@@ -14,7 +14,7 @@ html = fp.read()
 fp.close()
 msg = MIMEMultipart('alternative')
 msg['Subject'] = str(sys.argv[5])
-msg['From'] = "Adimanav Studios"
+msg['From'] = "Desired Name"
 #msg.attach(MIMEText(html, 'html'))
 
 server = smtplib.SMTP(str(sys.argv[1]))
@@ -42,7 +42,7 @@ else:
 				#print(row[1])
 				if ( validate_email(row[1]) ):
 					try:
-						server.sendmail("Adimanav Studios", [row[1]], msg.as_string())
+						server.sendmail("Desired Name", [row[1]], msg.as_string())
 					except SMTPException:
 						print "An error occured."
 server.quit()
