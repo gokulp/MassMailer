@@ -1,0 +1,48 @@
+
+
+Writing an Email
+=====================================================================================
+One needs to configure 2 files while writing an email.
+	1. subject_line.txt :
+		This contains subject line of the mail to be sent.
+
+	2. message.txt:
+		This file should be written in an HTML format. Please read following SO links 
+		to understand more about how to write a message body.
+
+Configuring email_address.csv file
+======================================================================================
+
+Configure file as comma(,) seperated file with following structure.
+
+<Name> , <Email Address>
+
+Configuring cred.info file
+======================================================================================
+
+cred.info file contains all the credentials necessary for setting up an account and
+sending mails. It can be configured for multiple accounts with following structure.
+
+[smtp_server_details]           <USER_NAME>:<PASSWORD>
+
+NOTE: Number of lines in this file should correspond to Number of accounts
+
+Program Structure
+======================================================================================
+
+Execution begins with 'StartSending.sh'
+This script should be run with root priviledges otherwise it will return without 
+performing any operation.
+
+Script reads credentials and file locations from cred.info to start sending mails.
+
+In step one it configures postfix server with currently read user details and reloads
+it. This will make sure that python script will send mails from configured account.
+
+Control is passed to 'massMailer.py'.
+	This script is called with 5 arguments they are as follows.
+		1. smtp server details      : This is fetched from cred.info
+		2. Username                 : This is fetched from cred.info
+		3. Password                 : This is fetched from cred.info
+		4. File Name for Email List : This is fetched from cred.info
+		5. Subject Line             : Read from configuration file "subject_line.txt"
